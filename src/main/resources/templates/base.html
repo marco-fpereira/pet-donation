@@ -3,159 +3,75 @@
     <meta charset="UTF-8">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@1,500&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="https://getbootstrap.com/docs/4.0/assets/img/favicons/favicon.ico">
+    
+    <link rel="stylesheet" href="css/carousel.css">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/style.css">
 
-    <style>
-        .logo-container{
-            background-color: #ffffff;
-            color: #272525;
-        }
-        .logo{
-            font-family: 'Inter', cursive;
-            font-size: 1.5rem;
-        }
-        .rodape{
-            position: absolute;
-            bottom: 0;
-            background-color: #ffffff;
-            color: #333333;
-            width: 100%;
-            height: 100px;
-            text-align: center;
-            line-height: 100px;
-        }
-    </style>
-</head>
-<!-- https://bootstrap-menu.com/detail-fixed-onscroll.html -->
-<div th:fragment="logo">
-    <header class="row logo-container p-0">
-        <div class="p-3 d-flex">
-            <img src="../images/patinha.svg" alt="MDN logo">
-            <span class="logo ml-2">PetDonation</span>
-        </div>
-    </header>
-</div>
-
-<div th:fragment="rodape">
-    <footer class="rodape p-2">
-        <img class="ml-3" src="../images/patinha.svg" alt="MDN logo">
-        <span class="logo ml-5">PetDonation</span>
-        <span class="mr-3">© PetDonation, Inc. 2021!</span>
-    </footer>
-</div>
-
-
-</html>
-
-<!---
-<!DOCTYPE html>
-<html lang="pt-br">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
-    import css -->
-    <link rel="stylesheet" href="css/join.css">
-    <!-- logo na guia -->
-    <link rel="icon" type="imagem/png" href="assets/logo_coracao_azul.png" />
-
-    <title>PetDonation</title>
-    <!-- Para compartilhamento de link -->
-    <meta property="og:title" content="PetDonation">
-    <meta property="og:image" itemprop="image" content="../images/patinha.vg">
-    <meta property="og:url" content="https://ohanaenactus.netlify.app/index.html" />
-    <meta name="description" content="O PetDonation surgiu em março de 2021 e nasceu da necessidade de ganhar nota em APIHC." />
+    <script>
+      
+    </script>
 </head>
 
 <body>
-<div id="header"></div>
+    <header class="row logo-container p-0">
 
-<!-- main -->
-<main class="index-main">
-    <div class="index-headline-content">
-        <div class="index-headline-text">
-            <h1>Quem somos nos?</h1>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In cursus leo non arcu consectetur, nec blandit lectus commodo. Praesent non posuere neque. Etiam leo lectus, luctus nec ullamcorper ut, mollis nec enim. Vestibulum quis magna vitae massa porttitor porta. Aliquam erat volutpat. Vivamus suscipit nisi quis mi rutrum blandit. Donec laoreet pellentesque dolor, at aliquam nisi feugiat efficitur. Pellentesque sodales ante sem, a consectetur mi consequat vel.
-            </p>
-            <a href="#index-oferecemos"><button class="index-btn-conheca">Conheça nosso trabalho</button></a>
-        </div>
+        <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+
+            <div class="p-3 d-flex">
+                <img src="../images/patinha.svg" alt="MDN logo">
+                
+            </div>
+
+            <a class="navbar-brand" href="https://getbootstrap.com/docs/4.0/examples/carousel/#"> Pet Donation </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+            
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+
+              <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                  <a class="nav-link" href=">Home <span class="sr-only">Features</span></a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="https://getbootstrap.com/docs/4.0/examples/carousel/#"> Pricing </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link disabled" href="https://getbootstrap.com/docs/4.0/examples/carousel/#"> Community </a>
+                </li>
+              </ul>
+
+              <button type="button"  id="header-log-in-btn" class="btn btn-primary">Log in</button>
+              
+              <button type="button" class="btn btn-primary">Register</button>
+              
+            </div>
+          </nav>
+
+    <div th:fragment="logo">
+        
+            <!-- <div class="p-3 d-flex">
+                <img src="../images/patinha.svg" alt="MDN logo">
+                <span class="logo ml-2">PetDonation</span>
+            </div> -->
+        </header>
+    </div>
+    
+    <div th:fragment="rodape">
+        <footer class="rodape p-2">
+            <img class="ml-3" src="../images/patinha.svg" alt="MDN logo">
+            <span class="logo ml-5">PetDonation</span>
+            <span class="mr-3">© PetDonation, Inc. 2021!</span>
+        </footer>
     </div>
 
-    <div id="index-oferecemos" class="index-container-oferecemos">
-        <div class="index-nossas-frentes">
-            <div class="index-frentes-title">
-                <h2>O que oferecemos</h2>
-            </div>
-            <div class="index-frentes-imgs">
-                <div class="index-frente-ohanacast frente">
-                    <a href="ohana-cast.html">
-                        <img src="./assets/ohana-cast-logo.png" alt="OhanaCast">
-                        <h4>Macacos</h4>
-                        <p>Nossos amiguinhos</p>
-                    </a>
-                </div>
-                <div class="index-frente-ohanaapp frente">
-                    <a href="ohana-app.html">
-                        <img src="./assets/app-ilustracao.svg" alt="OhanaApp">
-                        <h4>Lagartos</h4>
-                        <p>Quase dragões</p>
-                    </a>
-                </div>
-                <div class="index-frente-ciclo frente">
-                    <a href="ciclo-de-formacao.html">
-                        <img src="./assets/ciclo-ilustracao.svg" alt="Ciclo de formação">
-                        <h4>Capivaras</h4>
-                        <p>As mais de boas</p>
-                    </a>
-                </div>
-            </div>
-        </div>
-        <div class="index-pesquisa-ohana">
-            <h3>Pesquisa PetDonation</h3>
-            <p>
-            </p>
-            <a href="https://docs.google.com/forms/d/e/1FAIpQLSfKzdW33FL0lYTOpVrwlPhFBrbednN2q067EiPHtDYBIocyBg/viewform"
-               target="_blank">Acesse nossa pesquisa</a>
-        </div>
-    </div>
 
-
-    <div class="index-doar">
-        <div class="for-us">
-            <div class="for-us-content">
-                <div class="desc-us">
-                    <div class="desc-us-text">
-                        <h2>Como você pode ajudar</h2>
-                        <p>
-                        </p>
-                    </div>
-                    <div class="desc-us-image">
-                        <img src="assets/stitch-azul.png" alt="Ilustração do personagem Stitch">
-                    </div>
-                </div>
-                <div class="button">
-                    <a href="doar.html"><button>Faça uma doação</button></a>
-                </div>
-            </div>
-        </div>
-    </div>
-
-</main>
-
-<div id="footer"></div>
-
-<!-- JQuery -->
-<script src="https://code.jquery.com/jquery-3.5.1.min.js"
-        integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
-<!-- Header & Footer -->
-<script src="js/loads.js"></script>
-<script src="js/index.js"></script>
-<!-- Hightlight -->
-<script src="js/hightlight.js"></script>
-<script>
-    var activePage = "home";
-</script>
 
 </body>
-
 </html>
+
