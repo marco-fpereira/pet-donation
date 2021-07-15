@@ -7,13 +7,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.ui.Model;
 
 import javax.validation.Valid;
 
 @Controller
-@RequestMapping(value = "/pet")
+@RequestMapping("pet")
 public class PetController {
 
     @Autowired
@@ -24,13 +25,18 @@ public class PetController {
         return "";
     }
 
-    @GetMapping(value = "/cadastro")
-    public String cadastroPet(@Valid CadastroPetDTO petDTO, BindingResult result){
-        if(result.hasErrors()) return "cadastro";
+    @GetMapping("cadastro")
+    public String cadastroPet(CadastroPetDTO cadastroPetDTO){
+        return "pet/cadastro";
+    }
 
-        Pet p = petDTO.toPet();
+    @PostMapping("novo")
+    public String novo(@Valid CadastroPetDTO cadastroPetDTO, BindingResult result){
+        if(result.hasErrors()) return "pet/cadastro";
+
+        Pet p = cadastroPetDTO.toPet();
         petRepository.save(p);
-        return "redirect:/usuario/home";
+        return "redirect:/home";
     }
 
 }

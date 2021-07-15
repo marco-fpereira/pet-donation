@@ -1,52 +1,111 @@
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head th:replace="~{base :: head}"></head>
-<body>
-<div th:replace="~{base :: logo}"></div>
+    <body>
+<!--        <div th:replace="~{base :: logo}"></div>-->
 
-<div class="container">
-    <div th:replace="~{base :: titulo('Novo Pedido')}"></div>
-    <div class="card mt-3">
-        <form th:object="${cadastroUsuarioDTO}" class="card-body" th:action="@{/pedido/novo}" method="POST">
-            <div class="form-group mb-3">
-                <label for="nomeProduto">Produto</label>
-                <input th:errorclass="is-invalid" class="form-control" name="nomeProduto" placeholder="Nome do produto"/><!-- th:field="*{nome}" -->
-                <small>Informe o nome do produto.</small>
-                <div class="invalid-feedback" th:errors="*{nomeProduto}">
-                    campo nome nao pode ser invalido
-                </div>
+        <div class="container">
+            <div class="card mt-3">
+                <form th:object="${cadastroUsuarioDTO}" class="card-body" th:action="@{/usuario/novo}" method="POST">
+                    <div class="row col-sm-6">
+                        <div class="form-group mb-3">
+                            <label for="email">Email</label>
+                            <input th:errorclass="is-invalid" class="form-control" th:field="*{email}" name="email" placeholder="Email"/><!-- th:field="*{nome}" -->
+                            <small>Insira o email.</small>
+                            <div class="invalid-feedback" th:errors="*{email}"></div>
+                        </div>
+                        <div class="form-group mb-3">
+                            <label for="senha">Senha</label>
+                            <input type="password" th:errorclass="is-invalid" class="form-control" name="senha" placeholder="Senha"/><!-- th:field="*{nome}" -->
+                            <small>Informe sua senha.</small>
+                            <div class="invalid-feedback" th:errors="*{senha}"></div>
+                        </div>
+                        <div class="form-group mb-3">
+                            <label for="confirmacaoSenha">Confirmação de senha</label>
+                            <input type="password" th:errorclass="is-invalid" class="form-control" name="confirmacaoSenha" placeholder="Confirmar senha"/> <!--th:field="*{valor}"-->
+                            <small>Confirme a senha informada.</small>
+                            <div class="invalid-feedback" th:errors="*{confirmacaoSenha}"></div>
+                        </div>
+                        <div class="form-group mb-3">
+                            <label for="tipoUsuario">Informe o tipo de usuario</label>
+                            <select class="form-control form-select" name="tipoUsuario">
+                                <option>Adotante</option>
+                                <option>Responsavel</option>
+                            </select>
+                            <small>Informe o tipo de usuario que deseja cadastrar.</small>
+                        </div>
+                    </div>
+                    <div class="row col-sm-6">
+                        <div class="form-group mb-3">
+                            <label for="nome">Nome</label>
+                            <input th:errorclass="is-invalid" class="form-control" name="nome" placeholder="Nome"/><!-- th:field="*{nome}" -->
+                            <small>Informe o seu nome.</small>
+                            <div class="invalid-feedback" th:errors="*{nome}"></div>
+                        </div>
+                        <div class="form-group mb-3">
+                            <label for="data_nasc">Data de Nascimento</label>
+                            <input type="date" th:errorclass="is-invalid" class="form-control" name="data_nasc"/><!-- th:field="*{nome}" -->
+                            <small>Informe a sua data de nascimento.</small>
+                            <div class="invalid-feedback" th:errors="*{data_nasc}"></div>
+                        </div>
+                        <div class="form-group mb-3">
+                            <label for="cpf">CPF</label>
+                            <input th:errorclass="is-invalid" class="form-control" name="cpf" placeholder="cpf"/><!-- th:field="*{urlProduto}" -->
+                            <small>informe seu CPF.</small>
+                            <div class="invalid-feedback" th:errors="*{cpf}"></div>
+                        </div>
+                        <div class="form-group mb-3">
+                            <label for="telefone">Telefone</label>
+                            <input th:errorclass="is-invalid" class="form-control" name="telefone" placeholder="telefone"/><!-- th:field="*{urlProduto}" -->
+                            <small>informe seu numero de telefone no formato XX XXXXX-XXXX</small>
+                            <div class="invalid-feedback" th:errors="*{telefone}"></div>
+                        </div>
+                    </div>
+                    <div class="row col-sm-6">
+                        <div class="form-group mb-3">
+                            <label for="logradouro">Logradouro</label>
+                            <input th:errorclass="is-invalid" class="form-control" name="logradouro" placeholder="logradouro"/><!-- th:field="*{urlProduto}" -->
+                            <small>informe o logradouro do seu endereco.</small>
+                            <div class="invalid-feedback" th:errors="*{logradouro}"></div>
+                        </div>
+                        <div class="form-group mb-3">
+                            <label for="numero">Numero</label>
+                            <input th:errorclass="is-invalid" class="form-control" name="numero" placeholder="numero"/><!-- th:field="*{urlProduto}" -->
+                            <small>informe o numero da sua residencia.</small>
+                            <div class="invalid-feedback" th:errors="*{numero}"></div>
+                        </div>
+                        <div class="form-group mb-3">
+                            <label for="bairro">Bairro</label>
+                            <input th:errorclass="is-invalid" class="form-control" name="bairro" placeholder="bairro"/><!-- th:field="*{urlProduto}" -->
+                            <small>informe o bairro do seu endereco.</small>
+                            <div class="invalid-feedback" th:errors="*{bairro}"></div>
+                        </div>
+                        <div class="form-group mb-3">
+                            <label for="cidade">Cidade</label>
+                            <input th:errorclass="is-invalid" class="form-control" name="cidade" placeholder="cidade"/><!-- th:field="*{urlProduto}" -->
+                            <small>informe a cidade onde mora.</small>
+                            <div class="invalid-feedback" th:errors="*{cidade}"></div>
+                        </div>
+                        <div class="form-group mb-3">
+                            <label for="estado">Estado</label>
+                            <input th:errorclass="is-invalid" class="form-control" name="estado" placeholder="estado"/><!-- th:field="*{urlProduto}" -->
+                            <small>informe o estado onde mora.</small>
+                            <div class="invalid-feedback" th:errors="*{estado}"></div>
+                        </div>
+                        <div class="form-group mb-3">
+                            <label for="complemento">Complemento</label>
+                            <input class="form-control" name="complemento" placeholder="complemento"/><!-- th:field="*{urlProduto}" -->
+                            <small>informe o complemento do seu endereco (opcional).</small>
+                        </div>
+                        <div class="form-group mb-3">
+                            <label for="cep">CEP</label>
+                            <input th:errorclass="is-invalid" class="form-control" name="cep" placeholder="cep"/><!-- th:field="*{urlProduto}" -->
+                            <small>informe o CEP do seu endereco.</small>
+                            <div class="invalid-feedback" th:errors="*{cep}"></div>
+                        </div>
+                    </div>
+                    <button class="btn btn-primary" type="submit">Cadastrar</button>
+                </form>
             </div>
-            <div class="form-group mb-3">
-                <label for="valor">Valor</label>
-                <input th:errorclass="is-invalid" class="form-control" name="valor" placeholder="Valor do produto"/> <!--th:field="*{valor}"-->
-                <small>Informe o valor do produto.</small>
-                <div class="invalid-feedback" th:errors="*{valor}">
-                    campo nome nao pode ser invalido
-                </div>
-            </div>
-            <div class="form-group mb-3">
-                <label for="urlProduto">URL do produto</label>
-                <input th:errorclass="is-invalid" class="form-control" name="urlProduto" placeholder="url do produto"/><!-- th:field="*{urlProduto}" -->
-                <small>Busque em um site e informe a url do produto.</small>
-                <div class="invalid-feedback" th:errors="*{urlProduto}">
-                    campo nome nao pode ser invalido
-                </div>
-            </div>
-            <div class="form-group mb-3">
-                <label for="urlImagem">URL da imagem</label>
-                <input th:errorclass="is-invalid" class="form-control" name="urlImagem" placeholder="url da imagem"/><!-- th:field="*{urlImagem}" -->
-                <small>Copie a url de uma boa imagem do produto escolhido.</small>
-                <div class="invalid-feedback" th:errors="*{urlImagem}">
-                    campo nome nao pode ser invalido
-                </div>
-            </div>
-            <div class="form-group mb-3">
-                <label>Descrição</label>
-                <textarea class="form-control" name="descricao" placeholder="descrição do produto"></textarea>
-                <small>Informe a descrição detalhada do produto para ajudar o comprador.</small>
-            </div>
-            <button class="btn btn-success" type="submit">Cadastrar</button>
-        </form>
-    </div>
-</div>
-</body>
+        </div>
+    </body>
 </html>

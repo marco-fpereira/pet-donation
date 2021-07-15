@@ -31,7 +31,7 @@ public class HomeController {
     }
 
     @GetMapping("cadastro")
-    public String cadastro(){
+    public String cadastro(CadastroUsuarioDTO cadastroUsuarioDTO){
         return "usuario/cadastro";
     }
 

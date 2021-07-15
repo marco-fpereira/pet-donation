@@ -11,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -27,17 +28,20 @@ public class UsuarioController {
     EnderecoRepository enderecoRepository;
 
     @PostMapping("novo")
-    public ResponseEntity novo(@Valid CadastroUsuarioDTO cadastroUsuarioDTO, BindingResult result){
-        // if(result.hasErrors()) return "usuario/cadastro";
-        if(result.hasErrors()) return new ResponseEntity(result.getFieldErrors(), HttpStatus.BAD_REQUEST);
-
+    public String novo(@Valid CadastroUsuarioDTO cadastroUsuarioDTO, BindingResult result){
+        if(result.hasErrors()) return "usuario/cadastro";
+        if(!cadastroUsuarioDTO.getSenha().equals(cadastroUsuarioDTO.getConfirmacaoSenha())){
+            ObjectError obj = new ObjectError("cadastroUsuarioDTO.getConfirmacaoSenha()", "A senha e sua confirmação não correspondem");
+            result.addError(obj);
+            // https://stackoverflow.com/questions/12107503/adding-error-message-to-spring-3-databinder-for-custom-object-fields
+            return "usuario/cadastro";
+        }
         Endereco endereco = cadastroUsuarioDTO.toEndereco();
         enderecoRepository.save(endereco);
 
         Usuario usuario = cadastroUsuarioDTO.toUsuario();
         usuario.setEndereco(endereco);
         usuarioRepository.save(usuario);
-        //return "redirect:/login"
-        return new ResponseEntity(endereco, HttpStatus.CREATED);
+        return "redirect:/login";
     }
 }

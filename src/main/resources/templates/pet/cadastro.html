@@ -1,10 +1,86 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:replace="~{base :: head}">
+<!--    <title>Title</title> -->
 </head>
-<body>
 
-</body>
+    <body>
+        <div class="container">
+            <div class="card mt-3">
+                <form th:object="${cadastroPetDTO}" class="card-body" th:action="@{/pet/novo}" method="POST">
+
+                    <div class="row col-sm-6">
+
+                        <div class="form-group mb-3">
+                            <label for="nomePet">Nome</label>
+                            <input th:errorclass="is-invalid" class="form-control" th:field="*{nomePet}" name="nomePet" placeholder="Nome do pet"/>
+                            <small>Insira o nome do pet.</small>
+                            <div class="invalid-feedback" th:errors="*{nomePet}"></div>
+                        </div>
+
+                        <div class="form-group mb-3">
+                            <label for="idade">Idade</label>
+                            <input th:errorclass="is-invalid" class="form-control" th:field="*{idade}" name="idade" placeholder="Idade do pet"/>
+                            <input type="radio" name="idadeAnos" value="Anos"/>
+                            <input type="radio" name="idadeMeses" value="Meses"/>
+                            <div class="invalid-feedback" th:errors="*{idade}"></div>
+                        </div>
+
+                        <div class="form-group mb-3">
+                            <label for="porte">Porte</label>
+                            <select class="form-control form-select" name="porte">
+                                <option>Pequeno</option>
+                                <option>Médio</option>
+                                <option>Grande</option>
+                            </select>
+                            <small>Informe o porte do pet.</small>
+                        </div>
+
+                        <div class="form-group mb-3">
+                            <label>Descrição</label>
+                            <textarea class="form-control" name="descricao" placeholder="descrição do produto"></textarea>
+                            <small>Dê uma descrição detalhada do pet para melhor conhecimento do adotante.</small>
+                        </div>
+
+                    </div>
+
+                    <div class="row col-sm-6">
+
+                        <div class="form-group mb-3">
+                            <label for="especie">Especie</label>
+                            <select class="form-control form-select" name="especie">
+                                <option>Cachorro</option>
+                                <option>Gato</option>
+                                <option>Macaco</option>
+                            </select>
+                            <small>Informe a especie do pet.</small>
+                        </div>
+
+                        <div class="form-group mb-3">
+                            <label for="raca">Raca</label>
+                            <input th:errorclass="is-invalid" class="form-control" th:field="*{raca}" name="raca" placeholder="Raça do pet"/>
+                            <small>Insira a raça do pet.</small>
+                            <div class="invalid-feedback" th:errors="*{raca}"></div>
+                        </div>
+
+                        <div class="form-group mb-3">
+                            <label for="genero">Genero</label>
+                            <select class="form-control form-select" name="genero">
+                                <option>Macho</option>
+                                <option>Fêmea</option>
+                            </select>
+                            <small>Informe o gênero do pet.</small>
+                        </div>
+
+                        <div class="form-group mb-3">
+                            <label for="castrado">Castrado?</label>
+                            <input type="radio" name="castrado" value="Sim">
+                        </div>
+
+                    </div>
+                    <button class="btn btn-primary" type="submit">Cadastrar</button>
+                </form>
+            </div>
+        </div>
+    </body>
 </html>

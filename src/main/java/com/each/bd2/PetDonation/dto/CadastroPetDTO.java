@@ -4,37 +4,39 @@ import com.each.bd2.PetDonation.entities.Pet;
 import com.each.bd2.PetDonation.entities.enums.StatusPet;
 
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.PositiveOrZero;
 
 public class CadastroPetDTO {
 
     @NotBlank(message = "O campo nome do pet é obrigatório")
     private String nomePet;
 
-    private Integer idadeAnos;
-    private Integer idadeMeses;
+    @PositiveOrZero(message = "Campo idade inválido ou vazio. Campo deve ser um inteiro positivo")
+    private Integer idade;
+    private Boolean idadeAnos;
+    private Boolean idadeMeses;
 
-    @NotBlank(message = "O campo porte do pet é obrigatório")
+//    @NotBlank(message = "O campo porte do pet é obrigatório")
     private String porte;
 
     private String descricao;
 
-    @NotBlank(message = "O campo espécie do pet é obrigatório")
+//    @NotBlank(message = "O campo espécie do pet é obrigatório")
     private String especie;
 
     @NotBlank(message = "O campo raça do pet é obrigatório")
     private String raca;
 
-    @NotBlank(message = "O campo gênero do pet é obrigatório")
+//    @NotBlank(message = "O campo gênero do pet é obrigatório")
     private String genero;
 
-    @NotBlank(message = "É obrigatório informar se o pet é castrado ou não")
     private Boolean castrado;
 
     public Pet toPet(){
         return new Pet(
                 this.especie, this.raca, this.genero, this.castrado,
-                this.idadeAnos != null ? this.idadeAnos : 0,
-                this.idadeMeses != null ? this.idadeMeses : 0,
+                this.idadeAnos ? idade : 0,
+                this.idadeMeses ? idade : 0,
                 0.00F, this.porte, StatusPet.DISPONIVEL.toString()
         );
     }
@@ -47,19 +49,27 @@ public class CadastroPetDTO {
         this.nomePet = nomePet;
     }
 
-    public Integer getIdadeAnos() {
+    public Integer getIdade() {
+        return idade;
+    }
+
+    public void setIdade(Integer idade) {
+        this.idade = idade;
+    }
+
+    public boolean isIdadeAnos() {
         return idadeAnos;
     }
 
-    public void setIdadeAnos(Integer idadeAnos) {
+    public void setIdadeAnos(boolean idadeAnos) {
         this.idadeAnos = idadeAnos;
     }
 
-    public Integer getIdadeMeses() {
+    public boolean isIdadeMeses() {
         return idadeMeses;
     }
 
-    public void setIdadeMeses(Integer idadeMeses) {
+    public void setIdadeMeses(boolean idadeMeses) {
         this.idadeMeses = idadeMeses;
     }
 

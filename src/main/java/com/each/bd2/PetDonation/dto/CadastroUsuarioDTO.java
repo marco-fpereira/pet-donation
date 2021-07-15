@@ -17,14 +17,18 @@ public class CadastroUsuarioDTO {
     private String email;
     @NotBlank(message = "O campo senha é obrigatório")
     private String senha;
+    @NotBlank(message = "O campo de confirmação de senha é obrigatório")
+    private String confirmacaoSenha;
+    @NotBlank(message = "É necessário informar o tipo de usuario")
+    private String tipoUsuario;
 
     @NotBlank(message = "O campo nome é obrigatório")
     private String nome;
     @Pattern(regexp = "[0-9]{3}\\.?[0-9]{3}\\.?[0-9]{3}\\-?[0-9]{2}", message = "Campo CPF inválido ou vazio. Ex: 123.456.789-10")
     private String cpf;
-    @Pattern(regexp = "^(((0[1-9]|[12][0-9]|30)[-/]?(0[13-9]|1[012])|31[-/]?(0[13578]|1[02])|(0[1-9]|1[0-9]|2[0-8])[-/]?02)[-/]?[0-9]{4}|29[-/]?02[-/]?([0-9]{2}(([2468][048]|[02468][48])|[13579][26])|([13579][26]|[02468][048]|0[0-9]|1[0-6])00))$", message = "Campo data inválido ou vazio. Exemplo de data válida no formato dd/mm/yyyy: 01/01/2021")
+    @Pattern(regexp = "([12]\\d{3}-(0[1-9]|1[0-2])-(0[1-9]|[12]\\d|3[01]))", message = "Campo data de nascimento vazio.")
     private String data_nasc;
-    @Pattern(regexp = "(\\(?\\d{2}\\)?\\s)?(\\d{4,5}\\-\\d{4})", message = "Campo telefone inválido ou vazio. Ex: 11 98888-8888")
+    @Pattern(regexp = "^([0-9]{2})\\s([9]{1})?([0-9]{4})-([0-9]{4})$", message = "Campo telefone inválido ou vazio. Ex: 11 98888-8888")
     private String telefone;
 
     @NotBlank(message = "O campo logradouro é obrigatório")
@@ -44,10 +48,8 @@ public class CadastroUsuarioDTO {
     public Usuario toUsuario() {
         Date dataNascFromString = null;
         try {
-            if (this.data_nasc.contains("/"))
-                dataNascFromString = new SimpleDateFormat("dd/MM/yyyy").parse(this.data_nasc);
-            else dataNascFromString = new SimpleDateFormat("dd-MM-yyyy").parse(this.data_nasc);
-        } catch(ParseException e){}
+            dataNascFromString = new SimpleDateFormat("dd-MM-yyyy").parse(this.data_nasc);
+        } catch(ParseException ignored){}
         return new Usuario(this.nome, this.cpf, dataNascFromString, this.telefone, toEndereco());
     }
 
@@ -70,6 +72,22 @@ public class CadastroUsuarioDTO {
 
     public void setSenha(String senha) {
         this.senha = senha;
+    }
+
+    public String getConfirmacaoSenha() {
+        return confirmacaoSenha;
+    }
+
+    public void setConfirmacaoSenha(String confirmacaoSenha) {
+        this.confirmacaoSenha = confirmacaoSenha;
+    }
+
+    public String getTipoUsuario() {
+        return tipoUsuario;
+    }
+
+    public void setTipoUsuario(String tipoUsuario) {
+        this.tipoUsuario = tipoUsuario;
     }
 
     public String getNome() {
