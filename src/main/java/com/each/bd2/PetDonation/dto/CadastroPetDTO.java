@@ -13,8 +13,7 @@ public class CadastroPetDTO {
 
     @PositiveOrZero(message = "Campo idade inválido ou vazio. Campo deve ser um inteiro positivo")
     private Integer idade;
-    private Boolean idadeAnos;
-    private Boolean idadeMeses;
+    private String medidaTemporal;
 
 //    @NotBlank(message = "O campo porte do pet é obrigatório")
     private String porte;
@@ -30,14 +29,14 @@ public class CadastroPetDTO {
 //    @NotBlank(message = "O campo gênero do pet é obrigatório")
     private String genero;
 
-    private Boolean castrado;
+    private boolean castrado;
 
     public Pet toPet(){
         return new Pet(
-                this.especie, this.raca, this.genero, this.castrado,
-                this.idadeAnos ? idade : 0,
-                this.idadeMeses ? idade : 0,
-                0.00F, this.porte, StatusPet.DISPONIVEL.toString()
+                this.nomePet, this.especie, this.raca, this.genero, this.castrado,
+                this.medidaTemporal.equals("Anos") ? idade : 0,
+                this.medidaTemporal.equals("Meses") ? idade : 0,
+                this.porte, StatusPet.DISPONIVEL.toString(), this.descricao
         );
     }
 
@@ -57,20 +56,12 @@ public class CadastroPetDTO {
         this.idade = idade;
     }
 
-    public boolean isIdadeAnos() {
-        return idadeAnos;
+    public String getMedidaTemporal() {
+        return medidaTemporal;
     }
 
-    public void setIdadeAnos(boolean idadeAnos) {
-        this.idadeAnos = idadeAnos;
-    }
-
-    public boolean isIdadeMeses() {
-        return idadeMeses;
-    }
-
-    public void setIdadeMeses(boolean idadeMeses) {
-        this.idadeMeses = idadeMeses;
+    public void setMedidaTemporal(String medidaTemporal) {
+        this.medidaTemporal = medidaTemporal;
     }
 
     public String getPorte() {

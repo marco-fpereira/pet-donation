@@ -13,7 +13,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class CadastroUsuarioDTO {
-    @Email(message = "Campo email inválido ou vazio. Ex: joao.carlos@gmail.com")
+    @Pattern(regexp = "[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?", message = "Campo email inválido ou vazio. Ex: joao.carlos@gmail.com")
     private String email;
     @NotBlank(message = "O campo senha é obrigatório")
     private String senha;
@@ -24,11 +24,11 @@ public class CadastroUsuarioDTO {
 
     @NotBlank(message = "O campo nome é obrigatório")
     private String nome;
-    @Pattern(regexp = "[0-9]{3}\\.?[0-9]{3}\\.?[0-9]{3}\\-?[0-9]{2}", message = "Campo CPF inválido ou vazio. Ex: 123.456.789-10")
+    @Pattern(regexp = "[0-9]{3}\\.?[0-9]{3}\\.?[0-9]{3}\\-?[0-9]{2}", message = "Campo CPF inválido ou vazio.")
     private String cpf;
     @Pattern(regexp = "([12]\\d{3}-(0[1-9]|1[0-2])-(0[1-9]|[12]\\d|3[01]))", message = "Campo data de nascimento vazio.")
     private String data_nasc;
-    @Pattern(regexp = "^([0-9]{2})\\s([9]{1})?([0-9]{4})-([0-9]{4})$", message = "Campo telefone inválido ou vazio. Ex: 11 98888-8888")
+    @Pattern(regexp = "^([0-9]{2})\\s([9]{1})?([0-9]{4})-([0-9]{4})$", message = "Campo telefone inválido ou vazio.")
     private String telefone;
 
     @NotBlank(message = "O campo logradouro é obrigatório")

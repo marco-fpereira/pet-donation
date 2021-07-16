@@ -16,15 +16,15 @@ public class Pet implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id_pet;
+    private String nomePet;
     private String especie;
     private String raca;
     private String sexo;
     private Boolean castrado;
     private Integer idadeAnos;
     private Integer idadeMeses;
-    private Float peso;
     private String porte;
-    private String disponivel;
+    private String status;
     private String descricao;
 
     @OneToOne(mappedBy = "pet")
@@ -41,16 +41,17 @@ public class Pet implements Serializable {
     public Pet() {
     }
 
-    public Pet(String especie, String raca, String sexo, Boolean castrado, Integer idadeAnos, Integer idadeMeses, Float peso, String porte, String disponivel) {
+    public Pet(String nomePet, String especie, String raca, String sexo, boolean castrado, Integer idadeAnos, Integer idadeMeses, String porte, String status, String descricao) {
+        this.nomePet = nomePet;
         this.especie = especie;
         this.raca = raca;
         this.sexo = sexo;
         this.castrado = castrado;
         this.idadeAnos = idadeAnos;
         this.idadeMeses = idadeMeses;
-        this.peso = peso;
         this.porte = porte;
-        this.disponivel = disponivel;
+        this.status = status;
+        this.descricao = descricao;
     }
 
     public Long getId_pet() {
@@ -59,6 +60,14 @@ public class Pet implements Serializable {
 
     public void setId_pet(Long id_pet) {
         this.id_pet = id_pet;
+    }
+
+    public String getNomePet() {
+        return nomePet;
+    }
+
+    public void setNomePet(String nomePet) {
+        this.nomePet = nomePet;
     }
 
     public String getEspecie() {
@@ -109,14 +118,6 @@ public class Pet implements Serializable {
         this.idadeMeses = idadeMeses;
     }
 
-    public Float getPeso() {
-        return peso;
-    }
-
-    public void setPeso(Float peso) {
-        this.peso = peso;
-    }
-
     public String getPorte() {
         return porte;
     }
@@ -125,12 +126,12 @@ public class Pet implements Serializable {
         this.porte = porte;
     }
 
-    public String getDisponivel() {
-        return disponivel;
+    public String getStatus() {
+        return status;
     }
 
-    public void setDisponivel(String disponivel) {
-        this.disponivel = disponivel;
+    public void setStatus(String status) {
+        this.status = status;
     }
 
     public Adocao getAdocao() {

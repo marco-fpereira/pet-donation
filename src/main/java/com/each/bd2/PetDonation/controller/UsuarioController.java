@@ -31,9 +31,7 @@ public class UsuarioController {
     public String novo(@Valid CadastroUsuarioDTO cadastroUsuarioDTO, BindingResult result){
         if(result.hasErrors()) return "usuario/cadastro";
         if(!cadastroUsuarioDTO.getSenha().equals(cadastroUsuarioDTO.getConfirmacaoSenha())){
-            ObjectError obj = new ObjectError("cadastroUsuarioDTO.getConfirmacaoSenha()", "A senha e sua confirmação não correspondem");
-            result.addError(obj);
-            // https://stackoverflow.com/questions/12107503/adding-error-message-to-spring-3-databinder-for-custom-object-fields
+            result.rejectValue("confirmacaoSenha", "error.confirmacaoSenha", "A senha e sua confirmação não correspondem");
             return "usuario/cadastro";
         }
         Endereco endereco = cadastroUsuarioDTO.toEndereco();

@@ -9,8 +9,6 @@
             <div class="card mt-3">
                 <form th:object="${cadastroPetDTO}" class="card-body" th:action="@{/pet/novo}" method="POST">
 
-                    <div class="row col-sm-6">
-
                         <div class="form-group mb-3">
                             <label for="nomePet">Nome</label>
                             <input th:errorclass="is-invalid" class="form-control" th:field="*{nomePet}" name="nomePet" placeholder="Nome do pet"/>
@@ -20,9 +18,11 @@
 
                         <div class="form-group mb-3">
                             <label for="idade">Idade</label>
-                            <input th:errorclass="is-invalid" class="form-control" th:field="*{idade}" name="idade" placeholder="Idade do pet"/>
-                            <input type="radio" name="idadeAnos" value="Anos"/>
-                            <input type="radio" name="idadeMeses" value="Meses"/>
+                            <input type="number" th:errorclass="is-invalid" class="form-control" th:field="*{idade}" name="idade" placeholder="Idade do pet"/>
+                            <select class="form-control-sm form-select-sm" name="medidaTemporal">
+                                <option>Anos</option>
+                                <option>Meses</option>
+                            </select>
                             <div class="invalid-feedback" th:errors="*{idade}"></div>
                         </div>
 
@@ -41,10 +41,6 @@
                             <textarea class="form-control" name="descricao" placeholder="descrição do produto"></textarea>
                             <small>Dê uma descrição detalhada do pet para melhor conhecimento do adotante.</small>
                         </div>
-
-                    </div>
-
-                    <div class="row col-sm-6">
 
                         <div class="form-group mb-3">
                             <label for="especie">Especie</label>
@@ -74,10 +70,9 @@
 
                         <div class="form-group mb-3">
                             <label for="castrado">Castrado?</label>
-                            <input type="radio" name="castrado" value="Sim">
+                            <input type="checkbox" name="castrado" value="true">
                         </div>
 
-                    </div>
                     <button class="btn btn-primary" type="submit">Cadastrar</button>
                 </form>
             </div>
