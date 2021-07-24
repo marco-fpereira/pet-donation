@@ -31,12 +31,17 @@ public class CadastroPetDTO {
 
     private boolean castrado;
 
+    private String urlImagem;
+
     public Pet toPet(){
         return new Pet(
                 this.nomePet, this.especie, this.raca, this.genero, this.castrado,
                 this.medidaTemporal.equals("Anos") ? idade : 0,
                 this.medidaTemporal.equals("Meses") ? idade : 0,
-                this.porte, StatusPet.DISPONIVEL.toString(), this.descricao
+                this.porte, StatusPet.DISPONIVEL.toString(), this.descricao,
+                this.urlImagem == null ?
+                    "https://mir-s3-cdn-cf.behance.net/project_modules/max_1200/65761296352685.5eac4787a4720.jpg" :
+                    this.urlImagem
         );
     }
 
@@ -110,5 +115,13 @@ public class CadastroPetDTO {
 
     public void setCastrado(Boolean castrado) {
         this.castrado = castrado;
+    }
+
+    public String getUrlImagem() {
+        return urlImagem;
+    }
+
+    public void setUrlImagem(String urlImagem) {
+        this.urlImagem = urlImagem;
     }
 }

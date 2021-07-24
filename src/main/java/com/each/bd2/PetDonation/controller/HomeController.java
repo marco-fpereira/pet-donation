@@ -18,12 +18,6 @@ import javax.validation.Valid;
 @RequestMapping("home")
 public class HomeController {
 
-    @Autowired
-    EnderecoRepository enderecoRepository;
-
-    @Autowired
-    UsuarioRepository usuarioRepository;
-
     @GetMapping
     public String home(Model model){
 

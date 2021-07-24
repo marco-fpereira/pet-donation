@@ -1,6 +1,7 @@
 package com.each.bd2.PetDonation.dto;
 
 
+import com.each.bd2.PetDonation.config.Users;
 import com.each.bd2.PetDonation.entities.Endereco;
 import com.each.bd2.PetDonation.entities.Usuario;
 
@@ -51,6 +52,10 @@ public class CadastroUsuarioDTO {
             dataNascFromString = new SimpleDateFormat("dd-MM-yyyy").parse(this.data_nasc);
         } catch(ParseException ignored){}
         return new Usuario(this.nome, this.cpf, dataNascFromString, this.telefone, toEndereco());
+    }
+
+    public Users toUsers(){
+        return new Users(this.email, this.senha, true);
     }
 
     public Endereco toEndereco() {

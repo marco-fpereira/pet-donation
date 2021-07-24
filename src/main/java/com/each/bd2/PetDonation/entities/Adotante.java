@@ -13,6 +13,8 @@ import java.util.List;
 @Table(name = "tb_adotante")
 public class Adotante extends Usuario{
 
+    private static final long serialVersionUID = 1L;
+
     private Double rendaMensal;
 
     @JsonIgnore
@@ -37,5 +39,15 @@ public class Adotante extends Usuario{
 
     public List<Adocao> getAdocao() {
         return adocao;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        return super.equals(o);
+    }
+
+    @Override
+    public int hashCode() {
+        return super.hashCode();
     }
 }

@@ -1,0 +1,53 @@
+<html lang="pt-br" xmlns:th="http://www.w3.org/1999/xhtml">
+
+<head th:replace="~{base :: head}">
+    <meta charset="utf-8">
+    <style>
+        .container-fluid {
+            display: flex;
+            justify-content: space-between;
+        }
+        .nome-pet{
+            color: #F96D17;
+            display: inline-block;
+        }
+        .row { /*border: 1px solid red;*/
+            margin-right: 30%;
+
+        }
+        img{
+            width: 50%;
+            height: 50%;
+        }
+    </style>
+
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <h4 href="/home"> &#8592; Voltar para o início</h4>
+            <div th:object="${pet}" class="col-lg-6 ml-4 mb-4">
+                <h1 th:text="${pet.nomePet}"></h1>
+
+                <div class="nome-pet">
+                    <h2>
+                        Porte <span th:text="${pet.porte}"></span>,
+                        <span th:if="${pet.idadeAnos == 0}" th:text="${pet.idadeAnos}"></span>
+                        <span th:unless="${pet.idadeAnos == 0}" th:text="${pet.idadeAnos}"></span>
+                    </h2>
+                </div>
+                <h3>Descrição:</h3>
+                <h4><span th:text="${pet.descricao}"></span></h4>
+                <h4 href="/usuario/perfil">Dados de contado do dono</h4>
+            </div>
+        </div>
+    <div>
+        <img src="https://mir-s3-cdn-cf.behance.net/project_modules/max_1200/65761296352685.5eac4787a4720.jpg">
+        <a href="interesseadotar">
+            <button class="btn btn-primary" type="button">Adotar</button>
+        </a>
+    </div>
+    </div>
+
+</body>
+</html>

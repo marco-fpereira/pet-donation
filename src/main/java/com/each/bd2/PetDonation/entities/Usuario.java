@@ -1,5 +1,6 @@
 package com.each.bd2.PetDonation.entities;
 
+import com.each.bd2.PetDonation.config.Users;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
@@ -10,7 +11,7 @@ import java.util.List;
 import java.util.Objects;
 
 @Entity(name = "tb_usuario")
-@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
+@Inheritance(strategy = InheritanceType.JOINED)
 public class Usuario implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -18,12 +19,16 @@ public class Usuario implements Serializable {
     // https://vladmihalcea.com/the-best-way-to-use-entity-inheritance-with-jpa-and-hibernate/
 
     @Id
-    @GeneratedValue(strategy = GenerationType.TABLE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id_usuario;
     private String nome;
     private String cpf;
     private Date data_nasc;
     private String telefone;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "username")
+    private Users user;
 
     @ManyToOne  // essa anotação define que essa classe um relacionamento muitos para um com a classe enderço
     @JoinColumn(name = "id_endereco")   // junta-se as tabelas por meio do id da outra classe
@@ -94,6 +99,14 @@ public class Usuario implements Serializable {
 
     public List<Doacao> getDoacao() {
         return doacao;
+    }
+
+    public Users getUser() {
+        return user;
+    }
+
+    public void setUser(Users user) {
+        this.user = user;
     }
 
     @Override

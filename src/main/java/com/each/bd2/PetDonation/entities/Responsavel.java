@@ -11,6 +11,8 @@ import java.util.List;
 @Table(name = "tb_responsavel")
 public class Responsavel extends Usuario{
 
+    private static final long serialVersionUID = 1L;
+
     @JsonIgnore
     @OneToMany(mappedBy = "responsavel")
     private List<Adocao> adocao = new ArrayList<>();
@@ -32,5 +34,15 @@ public class Responsavel extends Usuario{
 
     public List<Pet> getPets() {
         return pets;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        return super.equals(o);
+    }
+
+    @Override
+    public int hashCode() {
+        return super.hashCode();
     }
 }

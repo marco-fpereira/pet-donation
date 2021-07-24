@@ -1,31 +1,63 @@
 package com.each.bd2.PetDonation.controller;
 
+import com.each.bd2.PetDonation.config.Users;
 import com.each.bd2.PetDonation.dto.CadastroUsuarioDTO;
+import com.each.bd2.PetDonation.entities.Adotante;
 import com.each.bd2.PetDonation.entities.Endereco;
+import com.each.bd2.PetDonation.entities.Responsavel;
 import com.each.bd2.PetDonation.entities.Usuario;
-import com.each.bd2.PetDonation.repository.EnderecoRepository;
-import com.each.bd2.PetDonation.repository.UsuarioRepository;
+import com.each.bd2.PetDonation.entities.enums.StatusPet;
+import com.each.bd2.PetDonation.repository.*;
+import com.each.bd2.PetDonation.service.EnderecoService;
+import com.each.bd2.PetDonation.service.PetService;
+import com.each.bd2.PetDonation.service.ResponsavelService;
+import com.each.bd2.PetDonation.service.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.validation.Valid;
+import java.security.Principal;
+import java.util.Date;
+import java.util.Optional;
 
 @Controller
 @RequestMapping("usuario")
 public class UsuarioController {
 
     @Autowired
-    UsuarioRepository usuarioRepository;
+    UsuarioService usuarioService;
 
     @Autowired
-    EnderecoRepository enderecoRepository;
+    ResponsavelService responsavelService;
+
+    @Autowired
+    PetService petService;
+
+    @Autowired
+    EnderecoService enderecoService;
+
+    @GetMapping("home")
+    public String home(Model model, Principal principal){
+        Responsavel responsavel = responsavelService.findByUsername(principal.getName());
+
+        if(responsavel != null){
+            model.addAttribute("meuspets", responsavel.getPets());
+            return "usuario/responsavel/homeresponsavel";
+        }else {
+            model.addAttribute("petsdisponiveis", petService.findByStatus(StatusPet.DISPONIVEL.toString()));
+            return "usuario/adotante/homeadotante";
+        }
+    }
 
     @PostMapping("novo")
     public String novo(@Valid CadastroUsuarioDTO cadastroUsuarioDTO, BindingResult result){
@@ -34,12 +66,23 @@ public class UsuarioController {
             result.rejectValue("confirmacaoSenha", "error.confirmacaoSenha", "A senha e sua confirmação não correspondem");
             return "usuario/cadastro";
         }
-        Endereco endereco = cadastroUsuarioDTO.toEndereco();
-        enderecoRepository.save(endereco);
+        if(usuarioService.findUsersById(cadastroUsuarioDTO.getEmail()) != null){
+            result.rejectValue("email", "error.email", "O e-mail informado já existe");
+            return "usuario/cadastro";
+        }
+        Endereco endereco = enderecoService.save(cadastroUsuarioDTO);
+        Users user = usuarioService.saveUsers(cadastroUsuarioDTO);
+        Usuario usuario = usuarioService.saveUsuario(cadastroUsuarioDTO, user, endereco.getId_endereco());
 
-        Usuario usuario = cadastroUsuarioDTO.toUsuario();
-        usuario.setEndereco(endereco);
-        usuarioRepository.save(usuario);
+        boolean isResp = cadastroUsuarioDTO.getTipoUsuario().equalsIgnoreCase("responsavel");
+        if(isResp) usuarioService.executeResponsavelSave(usuario);
+        else usuarioService.executeAdotanteSave(usuario);
         return "redirect:/login";
+    }
+
+    @GetMapping("perfil/{id_usuario}")
+    public String perfil(@PathVariable("id_usuario") String id_usuario, Model model){
+        model.addAttribute("usuario", usuarioService.findUsuarioById(Long.parseLong(id_usuario)));
+        return "usuario/perfil";    // -> FALTA CONSTRUIR ESSA TELA
     }
 }

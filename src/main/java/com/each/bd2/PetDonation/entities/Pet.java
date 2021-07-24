@@ -26,6 +26,7 @@ public class Pet implements Serializable {
     private String porte;
     private String status;
     private String descricao;
+    private String urlImagem;
 
     @OneToOne(mappedBy = "pet")
     private Adocao adocao;
@@ -41,7 +42,7 @@ public class Pet implements Serializable {
     public Pet() {
     }
 
-    public Pet(String nomePet, String especie, String raca, String sexo, boolean castrado, Integer idadeAnos, Integer idadeMeses, String porte, String status, String descricao) {
+    public Pet(String nomePet, String especie, String raca, String sexo, boolean castrado, Integer idadeAnos, Integer idadeMeses, String porte, String status, String descricao, String urlImagem) {
         this.nomePet = nomePet;
         this.especie = especie;
         this.raca = raca;
@@ -52,6 +53,7 @@ public class Pet implements Serializable {
         this.porte = porte;
         this.status = status;
         this.descricao = descricao;
+        this.urlImagem = urlImagem;
     }
 
     public Long getId_pet() {
@@ -160,5 +162,13 @@ public class Pet implements Serializable {
 
     public void setResponsavel(Responsavel responsavel) {
         this.responsavel = responsavel;
+    }
+
+    public String getUrlImagem() {
+        return urlImagem;
+    }
+
+    public void setUrlImagem(String urlImagem) {
+        this.urlImagem = urlImagem;
     }
 }
