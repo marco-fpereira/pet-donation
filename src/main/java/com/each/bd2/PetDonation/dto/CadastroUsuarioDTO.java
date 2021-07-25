@@ -4,6 +4,7 @@ package com.each.bd2.PetDonation.dto;
 import com.each.bd2.PetDonation.config.Users;
 import com.each.bd2.PetDonation.entities.Endereco;
 import com.each.bd2.PetDonation.entities.Usuario;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
@@ -55,7 +56,11 @@ public class CadastroUsuarioDTO {
     }
 
     public Users toUsers(){
-        return new Users(this.email, this.senha, true);
+        Users user = new Users(this.email, this.senha, true);
+        user.setPassword(new BCryptPasswordEncoder().encode(user.getPassword()));
+        user.setEnabled(true);
+        user.addAuthority("USER");
+        return user;
     }
 
     public Endereco toEndereco() {

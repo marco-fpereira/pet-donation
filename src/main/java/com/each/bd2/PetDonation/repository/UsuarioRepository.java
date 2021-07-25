@@ -13,7 +13,7 @@ import java.math.BigInteger;
 import java.util.List;
 
 @Repository
-public class UsuarioRepository /*extends JpaRepository<Usuario, Long>*/ {
+public class UsuarioRepository {
 
     @PersistenceContext
     EntityManager entityManager;

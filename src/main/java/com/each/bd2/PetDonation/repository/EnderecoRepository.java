@@ -16,9 +16,9 @@ public class EnderecoRepository {
     EntityManager entityManager;
 
     public void save(Endereco endereco){
-        entityManager.createNativeQuery("    insert into tb_endereco" +
+        entityManager.createNativeQuery("INSERT INTO tb_endereco" +
                 "(bairro, cep, cidade, complemento, estado, logradouro, numero)" +
-                " values (?, ?, ?, ?, ?, ?, ?)")
+                " VALUES (?, ?, ?, ?, ?, ?, ?)")
                 .setParameter(1, endereco.getBairro())
                 .setParameter(2, endereco.getCep())
                 .setParameter(3, endereco.getCidade())

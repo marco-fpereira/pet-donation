@@ -12,7 +12,7 @@ import javax.persistence.EntityTransaction;
 import javax.persistence.PersistenceContext;
 
 @Repository
-public class AdotanteRepository /*extends JpaRepository<Adotante, Long>*/ {
+public class AdotanteRepository {
 
     @PersistenceContext
     EntityManager entityManager;
@@ -31,7 +31,7 @@ public class AdotanteRepository /*extends JpaRepository<Adotante, Long>*/ {
 
     public Adotante findById(long id_adotante){
         return (Adotante) entityManager.createNativeQuery(
-                "SELECT * FROM tb_responsavel WHERE id_usuario = ?", Adotante.class)
+                "SELECT * FROM tb_adotante WHERE id_usuario = ?", Adotante.class)
                 .setParameter(1, id_adotante)
                 .getSingleResult();
     }

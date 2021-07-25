@@ -11,7 +11,7 @@ import javax.persistence.EntityTransaction;
 import javax.persistence.PersistenceContext;
 
 @Repository
-public class ResponsavelRepository /*extends JpaRepository<Responsavel, Long>*/ {
+public class ResponsavelRepository {
 
     @PersistenceContext
     EntityManager entityManager;
@@ -29,7 +29,7 @@ public class ResponsavelRepository /*extends JpaRepository<Responsavel, Long>*/ 
     public Responsavel findById(long id_responsavel){
         return (Responsavel) entityManager.createNativeQuery(
                 "SELECT * FROM tb_responsavel " +
-                        "JOIN tb_usuario on tb_responsavel.id_usuario = tb_usuario.id_usuario" +
+                        "JOIN tb_usuario ON tb_responsavel.id_usuario = tb_usuario.id_usuario" +
                         "WHERE id_usuario = ?", Responsavel.class)
                 .setParameter(1, id_responsavel)
                 .getSingleResult();

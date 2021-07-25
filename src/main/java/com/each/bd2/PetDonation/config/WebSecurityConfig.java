@@ -28,15 +28,17 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                     .formLogin(form -> form
                         .loginPage("/login").defaultSuccessUrl("/usuario/home", true)
-                        .permitAll());
+                        .permitAll())
+                .csrf().disable();
     }
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 
-        auth.jdbcAuthentication()
-                .dataSource(dataSource)
-                .passwordEncoder(encoder);
+        auth.jdbcAuthentication().dataSource(dataSource)
+            .passwordEncoder(encoder)
+            .usersByUsernameQuery("select username, password, enabled from users where username=?")
+            .authoritiesByUsernameQuery("select username, authority from authorities where username=?");
     }
 }

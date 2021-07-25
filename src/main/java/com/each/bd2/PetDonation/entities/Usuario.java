@@ -16,8 +16,6 @@ public class Usuario implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    // https://vladmihalcea.com/the-best-way-to-use-entity-inheritance-with-jpa-and-hibernate/
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id_usuario;
