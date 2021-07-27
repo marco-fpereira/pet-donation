@@ -1,9 +1,9 @@
 package com.each.bd2.PetDonation.service;
 
+import com.each.bd2.PetDonation.config.Authorities;
 import com.each.bd2.PetDonation.config.Users;
 import com.each.bd2.PetDonation.dto.CadastroUsuarioDTO;
 import com.each.bd2.PetDonation.entities.Adotante;
-import com.each.bd2.PetDonation.entities.Endereco;
 import com.each.bd2.PetDonation.entities.Responsavel;
 import com.each.bd2.PetDonation.entities.Usuario;
 import com.each.bd2.PetDonation.repository.*;
@@ -11,7 +11,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.Optional;
 
 @Service
 public class UsuarioService {
@@ -40,6 +39,10 @@ public class UsuarioService {
         return usersRepository.findById(id);
     }
 
+    public Usuario findByUsername(String username){
+        return usuarioRepository.findByUsername(username);
+    }
+
     @Transactional
     public Usuario saveUsuario(CadastroUsuarioDTO cadastroUsuarioDTO, Users user, Long id_endereco){
 
@@ -55,7 +58,12 @@ public class UsuarioService {
     @Transactional
     public Users saveUsers(CadastroUsuarioDTO cadastroUsuarioDTO){
         Users user = cadastroUsuarioDTO.toUsers();
+        Authorities authorities = new Authorities(
+                cadastroUsuarioDTO.getTipoUsuario().equalsIgnoreCase(
+                "Responsavel") ? "RESPONSAVEL" : "ADOTANTE"
+                );
         usersRepository.save(user);
+        usersRepository.persistAuthority(authorities, user);
         return user;
     }
 

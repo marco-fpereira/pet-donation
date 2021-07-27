@@ -1,7 +1,6 @@
 package com.each.bd2.PetDonation.controller;
 
 import com.each.bd2.PetDonation.entities.enums.StatusPet;
-import com.each.bd2.PetDonation.repository.PetRepository;
 import com.each.bd2.PetDonation.service.PetService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

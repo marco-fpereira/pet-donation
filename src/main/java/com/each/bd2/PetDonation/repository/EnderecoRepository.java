@@ -1,13 +1,11 @@
 package com.each.bd2.PetDonation.repository;
 
 import com.each.bd2.PetDonation.entities.Endereco;
-import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import java.math.BigInteger;
-import java.util.List;
 
 @Repository
 public class EnderecoRepository {

@@ -1,16 +1,12 @@
 package com.each.bd2.PetDonation.repository;
 
-import com.each.bd2.PetDonation.entities.Responsavel;
 import com.each.bd2.PetDonation.entities.Usuario;
-import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
-import javax.persistence.EntityTransaction;
+import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
 import java.math.BigInteger;
-import java.util.List;
 
 @Repository
 public class UsuarioRepository {
@@ -32,18 +28,28 @@ public class UsuarioRepository {
     }
 
     public Usuario findById(long id_usuario){
+        try {
         return (Usuario) entityManager.createNativeQuery(
                 "SELECT * FROM tb_usuario " +
                         "WHERE id_usuario = ?", Usuario.class)
                 .setParameter(1, id_usuario)
                 .getSingleResult();
+        } catch (NoResultException e){
+            System.out.println("Entidade nao encontrada para a query");
+            return new Usuario();
+        }
     }
 
     public Usuario findByUsername(String username) {
-        return (Usuario) entityManager.createNativeQuery(
-                "SELECT * FROM tb_usuario WHERE username = ?",  Usuario.class)
-                .setParameter(1, username)
-                .getSingleResult();
+        try {
+            return (Usuario) entityManager.createNativeQuery(
+                    "SELECT *, 0 AS clazz_ FROM tb_usuario WHERE username = ?",  Usuario.class)
+                    .setParameter(1, username)
+                    .getSingleResult();
+        } catch (NoResultException e){
+            System.out.println("Entidade nao encontrada para a query");
+            return new Usuario();
+        }
     }
 
     public BigInteger getLastInsertId(){

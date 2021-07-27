@@ -1,10 +1,10 @@
 package com.each.bd2.PetDonation.service;
 
 import com.each.bd2.PetDonation.entities.Pet;
-import com.each.bd2.PetDonation.entities.enums.StatusPet;
 import com.each.bd2.PetDonation.repository.PetRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -22,6 +22,7 @@ public class PetService {
         return petRepository.findById(id);
     }
 
+    @Transactional
     public void save(Pet pet){
         petRepository.save(pet);
     }

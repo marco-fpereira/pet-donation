@@ -1,11 +1,9 @@
 package com.each.bd2.PetDonation.config;
 
 import com.each.bd2.PetDonation.entities.Usuario;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
-import java.io.Serializable;
 import java.util.*;
 
 @Entity

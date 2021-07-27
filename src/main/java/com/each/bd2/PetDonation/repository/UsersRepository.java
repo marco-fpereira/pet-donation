@@ -1,7 +1,7 @@
 package com.each.bd2.PetDonation.repository;
 
+import com.each.bd2.PetDonation.config.Authorities;
 import com.each.bd2.PetDonation.config.Users;
-import com.each.bd2.PetDonation.entities.Usuario;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
@@ -32,5 +32,13 @@ public class UsersRepository{
         } catch (NoResultException result){
             return null;
         }
+    }
+
+    public void persistAuthority(Authorities authority, Users user){
+        entityManager.createNativeQuery(
+                "INSERT INTO authorities (username, authority) VALUES (?, ?)")
+                .setParameter(1, user.getUsername())
+                .setParameter(2, authority.getAuthority())
+                .executeUpdate();
     }
 }

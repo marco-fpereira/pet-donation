@@ -1,8 +1,6 @@
 package com.each.bd2.PetDonation.config;
 
 import javax.persistence.*;
-import java.io.Serializable;
-import java.util.Objects;
 
 @Embeddable
 public class Authorities{
@@ -15,4 +13,11 @@ public class Authorities{
         this.authority = authority;
     }
 
+    public String getAuthority() {
+        return authority;
+    }
+
+    public void setAuthority(String authority) {
+        this.authority = authority;
+    }
 }

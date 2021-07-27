@@ -1,7 +1,6 @@
 package com.each.bd2.PetDonation.controller;
 
 import com.each.bd2.PetDonation.entities.Responsavel;
-import com.each.bd2.PetDonation.repository.ResponsavelRepository;
 import com.each.bd2.PetDonation.service.ResponsavelService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
