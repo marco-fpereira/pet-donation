@@ -39,7 +39,7 @@ public class CadastroPetDTO {
                 this.medidaTemporal.equals("Anos") ? idade : 0,
                 this.medidaTemporal.equals("Meses") ? idade : 0,
                 this.porte, StatusPet.DISPONIVEL.toString(), this.descricao,
-                this.urlImagem == null ?
+                this.urlImagem == null || this.urlImagem.equals("") ?
                     "https://mir-s3-cdn-cf.behance.net/project_modules/max_1200/65761296352685.5eac4787a4720.jpg" :
                     this.urlImagem
         );

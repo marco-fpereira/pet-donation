@@ -1,6 +1,7 @@
 package com.each.bd2.PetDonation.repository;
 
 import com.each.bd2.PetDonation.entities.Adotante;
+import com.each.bd2.PetDonation.entities.Responsavel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -41,10 +42,15 @@ public class AdotanteRepository {
 
     public Adotante findByUsername(String username) {
         try {
-            return (Adotante) usuarioRepository.findByUsername(username);
+            return (Adotante) entityManager.createNativeQuery(
+                    "SELECT *, 0 AS clazz_ FROM tb_usuario " +
+                            "JOIN tb_adotante ON tb_adotante.id_usuario = tb_usuario.id_usuario " +
+                            "WHERE tb_usuario.username = ?", Adotante.class)
+                    .setParameter(1, username)
+                    .getSingleResult();
         } catch (NoResultException e){
             System.out.println("Entidade nao encontrada para a query");
-            return new Adotante();
+            return null;
         }
     }
 }

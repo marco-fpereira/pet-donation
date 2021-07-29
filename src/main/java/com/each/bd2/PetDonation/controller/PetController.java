@@ -3,6 +3,7 @@ package com.each.bd2.PetDonation.controller;
 import com.each.bd2.PetDonation.dto.CadastroPetDTO;
 import com.each.bd2.PetDonation.entities.Pet;
 import com.each.bd2.PetDonation.entities.Responsavel;
+import com.each.bd2.PetDonation.entities.enums.StatusPet;
 import com.each.bd2.PetDonation.service.PetService;
 import com.each.bd2.PetDonation.service.ResponsavelService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,14 +39,14 @@ public class PetController {
     }
 
     @PostMapping("novo")
-    public String novo(@Valid CadastroPetDTO cadastroPetDTO, BindingResult result, Principal principal){
+    public String novo(@Valid CadastroPetDTO cadastroPetDTO, BindingResult result, Principal principal, Model model){
         if(result.hasErrors()) return "pet/cadastro";
 
         Pet p = cadastroPetDTO.toPet();
         Responsavel responsavel = responsavelService.findByUsername(principal.getName());
         p.setResponsavel(responsavel);
         petService.save(p);
-        return "usuario/responsavel/homeresponsavel";
+        return "redirect:/usuario/home";
     }
 
     @GetMapping("adocao/{id_pet}")

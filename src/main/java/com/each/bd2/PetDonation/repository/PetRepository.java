@@ -1,6 +1,7 @@
 package com.each.bd2.PetDonation.repository;
 
 import com.each.bd2.PetDonation.entities.Pet;
+import com.each.bd2.PetDonation.entities.Responsavel;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
@@ -26,8 +27,8 @@ public class PetRepository{
 
     public void save(Pet pet){
         entityManager.createNativeQuery(
-                "INSERT INTO tb_pet (nome_pet, especie, raca, sexo, castrado, idade_anos, idade_meses, porte, status, descricao, id_responsavel)" +
-                        "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)")
+                "INSERT INTO tb_pet (nome_pet, especie, raca, sexo, castrado, idade_anos, idade_meses, porte, status, descricao, url_imagem, id_responsavel)" +
+                        "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)")
                 .setParameter(1, pet.getNomePet())
                 .setParameter(2, pet.getEspecie())
                 .setParameter(3, pet.getRaca())
@@ -38,7 +39,8 @@ public class PetRepository{
                 .setParameter(8, pet.getPorte())
                 .setParameter(9, pet.getStatus())
                 .setParameter(10, pet.getDescricao())
-                .setParameter(11, pet.getResponsavel().getId_usuario())
+                .setParameter(11, pet.getUrlImagem())
+                .setParameter(12, pet.getResponsavel().getId_usuario())
                 .executeUpdate();
     }
 
@@ -71,5 +73,21 @@ public class PetRepository{
                 .setParameter(1, status)
                 .setParameter(2, pet_id)
                 .executeUpdate();
+    }
+
+    public Responsavel findResponsavel(Long id_pet) {
+        try{
+            return (Responsavel) entityManager.createNativeQuery(
+            "SELECT tb_usuario.id_usuario, tb_usuario.cpf, tb_usuario.data_nasc, tb_usuario.nome," +
+                    " tb_usuario.telefone, tb_usuario.id_endereco, tb_usuario.username  FROM tb_responsavel " +
+                    "JOIN tb_usuario ON tb_responsavel.id_usuario = tb_usuario.id_usuario " +
+                    "JOIN tb_pet ON tb_pet.id_responsavel = tb_responsavel.id_usuario " +
+                    "WHERE tb_pet.id_pet = ?", Responsavel.class)
+                    .setParameter(1, id_pet)
+                    .getSingleResult();
+        } catch (NoResultException e){
+            System.out.println("Nenhum valor encontrado");
+            return new Responsavel();
+        }
     }
 }

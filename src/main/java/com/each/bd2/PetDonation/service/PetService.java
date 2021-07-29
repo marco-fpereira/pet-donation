@@ -1,6 +1,7 @@
 package com.each.bd2.PetDonation.service;
 
 import com.each.bd2.PetDonation.entities.Pet;
+import com.each.bd2.PetDonation.entities.Responsavel;
 import com.each.bd2.PetDonation.entities.enums.StatusPet;
 import com.each.bd2.PetDonation.repository.PetRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,5 +32,9 @@ public class PetService {
     @Transactional
     public void updateStatusEmAdocao(Long pet_id) {
         petRepository.updateStatus(pet_id, StatusPet.EM_DOACAO.toString());
+    }
+
+    public Responsavel findResponsavel(Long id_pet) {
+        return petRepository.findResponsavel(id_pet);
     }
 }

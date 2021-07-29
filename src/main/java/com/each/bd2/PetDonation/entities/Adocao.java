@@ -2,6 +2,7 @@ package com.each.bd2.PetDonation.entities;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.Objects;
 
@@ -14,7 +15,7 @@ public class Adocao implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id_adocao;
-    private Date dataAdocao;
+    private LocalDateTime dataAdocao;
     private String status;
 
     @ManyToOne
@@ -31,7 +32,7 @@ public class Adocao implements Serializable {
 
     public Adocao() {}
 
-    public Adocao(Date dataAdocao, String status, Adotante adotante, Responsavel responsavel, Pet pet) {
+    public Adocao(LocalDateTime dataAdocao, String status, Adotante adotante, Responsavel responsavel, Pet pet) {
         this.dataAdocao = dataAdocao;
         this.status = status;
         this.adotante = adotante;
@@ -47,11 +48,11 @@ public class Adocao implements Serializable {
         this.id_adocao = id_adocao;
     }
 
-    public Date getDataAdocao() {
+    public LocalDateTime getDataAdocao() {
         return dataAdocao;
     }
 
-    public void setDataAdocao(Date dataAdocao) {
+    public void setDataAdocao(LocalDateTime dataAdocao) {
         this.dataAdocao = dataAdocao;
     }
 
