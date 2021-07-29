@@ -1,10 +1,38 @@
-<!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-
-</body>
+<head th:replace="~{base :: head}"></head>
+    <body>
+        <div class="container">
+            <h1 class="text-center mb-4 mt-2">PETS DISPONIVEIS</h1>
+            <div class="card mb-3" th:each="pet : ${petsdisponiveis}">
+                <div class="card-body">
+                    <a th:href="@{/adotante/adocao/{id} (id=${pet.id_pet})}">
+                        <div class="row">
+                            <div class="col-12 col-sm-8 mb-3">
+                                <h3 class="orange-letter">Nome: <span th:text="${pet.nomePet}"></span></h3>
+                                <div class="row mb-2">
+                                    <div class="col-md-3">Especie: <span th:text="${pet.especie}"></span></div>
+                                    <div class="col-md-3">Raca: <span th:text="${pet.raca}"></span></div>
+                                    <div class="col-md-3">Porte: <span th:text="${pet.porte}"></span></div>
+                                    <div class="col-md-3">Gênero: <span th:text="${pet.sexo}"></span></div>
+                                </div>
+                                <div class="row mb-2">
+                                    <div th:if="${pet.idadeAnos == 0}" class="col-md-4"><span th:text="${pet.idadeAnos}"></span> anos</div>
+                                    <div th:unless="${pet.idadeAnos == 0}" class="col-md-4"><span th:text="${pet.idadeAnos}"></span> meses</div>
+                                    <div class="col-md-4"><span th:if="${pet.castrado == true}" th:text="Castrado"></span></div>
+                                </div>
+                                <h4 class="mt-3">Descrição:</h4>
+                                <div><span th:text="${pet.descricao}"></span></div>
+                            </div>
+                            <div class="col-12 col-sm-4 mb-3">
+                                <th:block th:switch="${pet.urlImagem}">
+                                    <img th:case="null" class="img-thumbnail" th:src="${pet.urlImagem}" src=""/>
+                                    <img th:case="*" class="img-thumbnail" src="https://mir-s3-cdn-cf.behance.net/project_modules/max_1200/65761296352685.5eac4787a4720.jpg"/>
+                                </th:block>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </body>
 </html>

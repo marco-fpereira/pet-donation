@@ -1,0 +1,309 @@
+* {
+    box-sizing: border-box;
+}
+
+/* Efeito de Transição na barra de rolagem */
+
+html {
+    scroll-behavior: smooth;
+}
+
+.textFormat{
+    font-family: 'Poppins', sans-serif;
+    color: #495057;
+    font-size: 1.1rem;
+}
+
+#logoLogin{
+    width:5rem;
+}
+
+/* Logo */
+
+#logo{
+    width:7rem;
+}
+
+#titulo_logo{
+    font-family: 'Passion One', cursive;
+    color:rgb(96, 195, 171);
+    font-size:3.5rem;
+}
+
+#titulo_logo:hover{
+    color:rgb(96, 195, 150);
+}
+
+a:hover{
+    text-decoration: none;
+}
+
+/* Header */
+
+.jumbotron {
+    background-color: #F9F9F9;
+    width: 100%;
+    max-width: 100%;
+    height: 682px;
+    padding: 0px !important;
+    position: relative;
+}
+
+h5{
+    color: pink;
+}
+/* Menu */
+
+nav ul li a {
+    font-size: 1.1rem;
+    font: sans-serif bold;
+    color: #595959;
+    width: 100px;
+    text-align: center;
+    font-weight: 300px;
+    padding: 40px;
+    white-space: nowrap;
+    font-family: 'Poppins', sans-serif;
+}
+
+nav ul li a:hover {
+    color: rgb(96, 195, 171);
+    border-radius: 15px;
+}
+
+/* Menu drop-down */
+
+.navbar-nav .dropdown-menu {
+    left: -45px;
+}
+
+#navDrop.dropdown-menu.show {
+    background-color: #4AE894;
+    border-radius: 15px;
+    text-align: center;
+    list-style: none;
+    padding: 0;
+    width: 100%;
+}
+
+#navDrop a {
+    font-size: 1.1rem;
+    font: sans-serif bold;
+    color: white;
+    padding: .5em 0;
+}
+
+#navDrop a:hover {
+    background-color: rgb(96, 195, 171);
+    color: white;
+    border-radius: 15px;
+}
+
+.navbar-toggler {
+    border: 1px solid lightgrey;
+}
+
+.navbar-toggler-icon {
+    border: 1px solid lightgrey;
+}
+
+/* Coluna que Contém o Texto do Banner */
+.coluna-texto-principal {
+    padding-top: 5%;
+    font-family: 'Pangolin', cursive;
+    font-size: 2rem;
+    color: #595959;
+}
+
+/* Imagem do Banner */
+
+#imagem-principal {
+    padding-top: 15%;
+    width: 100%;
+}
+
+/* Botão "Conheça Nossa História" Logo Após o Banner */
+
+.button-header {
+    display: inline-block;
+    padding: 10px 20px 10px 20px;
+    background-color: #4AE894;
+    font-family: 'Baloo Da 2', cursive;
+    font-size: 1.25rem;
+    position: absolute;
+    border-radius: 15px;
+    cursor: pointer;
+    color: white !important;
+    margin-top: 4.5rem;
+}
+
+.button-header:hover {
+    background-color: rgb(96, 195, 171);
+    text-decoration: none;
+}
+
+/* Primeira Section (Imagens e Textos) */
+
+article {
+    margin: 70px;
+}
+
+/* Títulos da Página (Títulos dos Textos e do Cadastro) */
+
+.titulo {
+    font-family: 'Poppins', sans-serif;
+    color: rgb(96, 195, 171);
+}
+
+/* Texto da Primeira Section */
+
+.body-text-p {
+    font-size: 1.1rem;
+    font: sans-serif bold;
+    color: grey;
+    text-align: justify;
+    line-height: 30px;
+    font-family: 'Baloo Da 2', cursive;
+    margin: 30px 0 30px 0;
+}
+
+/* Imagens da Primeira Section */
+
+.img{
+    width: 300px;
+    height: 300px;
+    display: block;
+}
+
+/* Div que Contém os Botões da Primeira Section */
+
+.div-botao-section{
+    margin-bottom:5%;
+}
+
+/* Botões das Sections (Textos e Formulário de Cadastro)*/
+
+.botao {
+    color: white;
+    font-size: 1.1rem;
+    border-radius: 15px;
+    padding: 10px 20px 10px 20px;
+    background-color: #4AE894;
+    font-family: 'Baloo Da 2', cursive;
+}
+
+
+.botao:hover {
+    background-color: rgb(96, 195, 171);
+    text-decoration: none;
+    color: white;
+}
+
+/* Segunda Section */
+
+.form {
+    background-color: white;
+    border-radius: 15px;
+    font-family: 'Poppins', sans-serif;
+}
+
+/* Form Cadastro */
+.cadastro{
+    font-family: 'Poppins', sans-serif;
+    color: rgb(96, 195, 171);
+}
+
+.titulo-cadastro{
+    text-align: center;
+    font-family: 'Poppins', sans-serif;
+    color: rgb(96, 195, 171);
+}
+
+form input{
+    justify-content: center;
+}
+
+/* Botão Voltar Ao Topo */
+
+#botaotop {
+    width: 3.438rem;
+    height: 3.438rem;
+    background: #4AE894;
+    bottom: 30px;
+    right: 30px;
+    color: #fff;
+    cursor: pointer;
+    position: fixed;
+    border: 0;
+    border-radius: 50%;
+}
+
+#botaotop:hover {
+    opacity: .5;
+}
+
+/* Seta do Botão Voltar Ao Topo */
+
+.setaTopo{
+    font-weight: bold;
+    font-size:1.5rem;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    position: relative;
+    left: 36.5%;
+    top: 26.5%;
+}
+
+/* MODAIS */
+.modal-title{
+    font-family: 'Poppins', sans-serif;
+    color: #4AE894;
+}
+
+.modal-text{
+    font-family: 'Poppins', sans-serif;
+    color: #595959;
+    text-align: justify;
+    line-height: 25px;
+}
+
+.modal-header{
+    padding: 20px;
+    text-align: center;
+}
+
+.modal-body{
+    padding: 20px;
+}
+
+/* Media Querys Para Responsividade */
+
+@media(max-width: 1680px) {
+    html{
+        font-size: 16px;
+    }
+}
+
+@media(max-width: 1024px) {
+    html{
+        font-size: 13px;
+    }
+}
+
+/* BreakPoint Para Ocultar a Imagem do Banner */
+@media(max-width: 992px) {
+    #imagem-principal {
+        display: none;
+    }
+}
+
+@media(max-width: 768px) {
+    html{
+        font-size: 13px;
+    }
+}
+
+@media(max-width: 480px) {
+    html{
+        font-size: 11.5px;
+    }
+}

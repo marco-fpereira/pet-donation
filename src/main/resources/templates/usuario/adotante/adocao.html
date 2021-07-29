@@ -25,29 +25,41 @@
 <body>
     <div class="container-fluid">
         <div class="row">
-            <h4 href="/home"> &#8592; Voltar para o início</h4>
-            <div th:object="${pet}" class="col-lg-6 ml-4 mb-4">
-                <h1 th:text="${pet.nomePet}"></h1>
-
-                <div class="nome-pet">
-                    <h2>
-                        Porte <span th:text="${pet.porte}"></span>,
-                        <span th:if="${pet.idadeAnos == 0}" th:text="${pet.idadeAnos}"></span>
-                        <span th:unless="${pet.idadeAnos == 0}" th:text="${pet.idadeAnos}"></span>
-                    </h2>
+            <a class="mb-2" href="/usuario/home">
+                <h4> &#8592; Voltar para o início</h4>
+            </a>
+            <div th:object="${pet}" class="ml-4 mb-4">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-12 col-sm-8 mb-3">
+                            <h3 class="orange-letter">Nome: <span th:text="${pet.nomePet}"></span></h3>
+                            <div class="row mb-2">
+                                <div class="col-md-3">Especie: <span th:text="${pet.especie}"></span></div>
+                                <div class="col-md-3">Raca: <span th:text="${pet.raca}"></span></div>
+                                <div class="col-md-3">Porte: <span th:text="${pet.porte}"></span></div>
+                                <div class="col-md-3">Gênero: <span th:text="${pet.sexo}"></span></div>
+                            </div>
+                            <div class="row mb-2">
+                                <div th:if="${pet.idadeAnos == 0}" class="col-md-4"><span th:text="${pet.idadeAnos}"></span> anos</div>
+                                <div th:unless="${pet.idadeAnos == 0}" class="col-md-4"><span th:text="${pet.idadeAnos}"></span> meses</div>
+                                <div class="col-md-4"><span th:if="${pet.castrado == true}" th:text="Castrado"></span></div>
+                            </div>
+                            <h4>Descrição:</h4>
+                            <div><span th:text="${pet.descricao}"></span></div>
+                        </div>
+                        <div class="col-12 col-sm-4 mb-3">
+                            <th:block th:switch="${pet.urlImagem}">
+                                <img th:case="null" class="img-thumbnail" th:src="${pet.urlImagem}" src=""/>
+                                <img th:case="*" class="img-thumbnail" src="https://mir-s3-cdn-cf.behance.net/project_modules/max_1200/65761296352685.5eac4787a4720.jpg"/>
+                            </th:block>
+                        </div>
+                    </div>
                 </div>
-                <h3>Descrição:</h3>
-                <h4><span th:text="${pet.descricao}"></span></h4>
-                <h4 href="/usuario/perfil">Dados de contado do dono</h4>
             </div>
+            <a th:href="@{/adotante/interesseadotar/{id} (id=${pet.id_pet})}">
+                <button class="btn btn-primary justify-content-center" type="button">Adotar</button>
+            </a>
         </div>
-    <div>
-        <img src="https://mir-s3-cdn-cf.behance.net/project_modules/max_1200/65761296352685.5eac4787a4720.jpg">
-        <a href="interesseadotar">
-            <button class="btn btn-primary" type="button">Adotar</button>
-        </a>
     </div>
-    </div>
-
 </body>
 </html>

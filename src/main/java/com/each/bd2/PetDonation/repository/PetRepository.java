@@ -56,12 +56,20 @@ public class PetRepository{
 
     public List<Pet> findByStatus(String status){
         try{
-            return entityManager.createNativeQuery("SELECT * FROM tb_pet WHERE status = ?")
+            return (List<Pet>) entityManager.createNativeQuery("SELECT * FROM tb_pet WHERE status = ?", Pet.class)
                 .setParameter(1, status)
                 .getResultList();
         } catch (NoResultException e){
             System.out.println("Nenhum valor encontrado");
             return new ArrayList<Pet>();
         }
+    }
+
+    public void updateStatus(Long pet_id, String status) {
+        entityManager.createNativeQuery("UPDATE tb_pet SET status = ? " +
+                "WHERE id_pet = ?")
+                .setParameter(1, status)
+                .setParameter(2, pet_id)
+                .executeUpdate();
     }
 }

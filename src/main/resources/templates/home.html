@@ -1,72 +1,54 @@
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
-    <head th:replace="~{base :: head}"></head>
+    <head th:replace="~{base :: head}">
+        <title>PetDonation</title>
+    </head>
     <body>
-<!--        <div th:replace="~{base :: logo}"></div>-->
+        <header>
+            <div class="jumbotron jumbotron-fluid d-flex justify-content-end shadow-sm">
+                <div class="container">
+                    <div id="topo" class="row">
+                        <nav class="navbar navbar-expand-lg col-12 navbar-fixed-top pt-0">
+                            <div class="navbar-collapse">
+                                <div class="expand-lg mr-auto text-center">
+                                    <a class="navbar-brand align-items-center " alt="home">
+                                        <img class="ml-3" src="../images/patinha.svg" alt="MDN logo">
+                                        <a href="/" > <p id="titulo_logo"> PetDonation </p> </a>
+                                    </a>
+                                </div>
 
-        <div  class="imagem p-3 d-flex">
-            <img src="../images/Wallpaper.png" alt="MDN logo">
-        </div>
-        
-    <section>
-        
-        
-            <main role="main">
-
-                <div id="myCarousel" class="carousel slide" data-ride="carousel">
-                    <ol class="carousel-indicators">
-                      <li data-target="#myCarousel" data-slide-to="0" class=""></li>
-                      <li data-target="#myCarousel" data-slide-to="1" class=""></li>
-                      <li data-target="#myCarousel" data-slide-to="2" class="active"></li>
-                    </ol>
-                    <div class="carousel-inner">
-                      <div class="carousel-item">
-                        <img class="first-slide" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="First slide">
-                        <div class="container">
-                          <div class="carousel-caption text-left">
-                            <h1>Example headline.</h1>
-                            <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-                            <p><a class="btn btn-lg btn-primary" href="https://getbootstrap.com/docs/4.0/examples/carousel/#" role="button">Sign up today</a></p>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="carousel-item">
-                        <img class="second-slide" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Second slide">
-                        <div class="container">
-                          <div class="carousel-caption">
-                            <h1>Another example headline.</h1>
-                            <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-                            <p><a class="btn btn-lg btn-primary" href="https://getbootstrap.com/docs/4.0/examples/carousel/#" role="button">Learn more</a></p>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="carousel-item active">
-                        <img class="third-slide" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Third slide">
-                        <div class="container">
-                          <div class="carousel-caption text-right">
-                            <h1>One more for good measure.</h1>
-                            <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-                            <p><a class="btn btn-lg btn-primary" href="https://getbootstrap.com/docs/4.0/examples/carousel/#" role="button">Browse gallery</a></p>
-                          </div>
-                        </div>
-                      </div>
+                                <!-- (Margem Direita (Menu Dropdown)-->
+                                <ul class="navbar-nav ml-auto align-items-center">
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="/login" alt="Login">Login</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="/home/cadastro" alt="Login">Cadastro</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </nav>
                     </div>
-                    <a class="carousel-control-prev" href="https://getbootstrap.com/docs/4.0/examples/carousel/#myCarousel" role="button" data-slide="prev">
-                      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                      <span class="sr-only">Previous</span>
-                    </a>
-                    <a class="carousel-control-next" href="https://getbootstrap.com/docs/4.0/examples/carousel/#myCarousel" role="button" data-slide="next">
-                      <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                      <span class="sr-only">Next</span>
-                    </a>
-                  </div>
-            
-        </main>
-    </section>
+                    <!-- Tag que Engloba Todo o Banner -->
+                    <div class="row">
+                        <!-- Div que Contém o Texto do Banner -->
+                        <div class="coluna-texto-principal col-lg-6 col-md-6 col-sm-12 col-xs-12 expand-lg  ">
 
-    <script src="js/jquery-3.2.1.slim.min.js.download" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script>window.jQuery || document.write('<script src="js/vendor/jquery-slim.min.js"><\/script>')</script>
+                        <span>
+                            Bem vindo à plataforma PetDonation <br> <br>
+                            Adote pets <br>
+                            Doe seu pet <br> <br>
+                            Seguro. Simples. Livre.
+                        </span>
+
+                        </div>
+                        <!-- Div que Contém a Imagem do Banner -->
+                        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                            <img id="imagem-principal" class="rounded float-right" src="../images/Wallpaper.png">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <div th:replace="~{base :: rodape}"></div>
     </body>
-
-
-
 </html>

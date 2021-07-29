@@ -23,8 +23,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .antMatchers("/home/**", "/usuario/novo")
                 .permitAll()
-                .anyRequest()
-                .authenticated()
+                .antMatchers("/usuario/adotante/**", "/adotante/**").hasAuthority("ADOTANTE")
+                .antMatchers("/usuario/responsavel/**", "/responsavel/**").hasAuthority("RESPONSAVEL")
+                .antMatchers("/pet/cadastro").hasAuthority("RESPONSAVEL")
+                .anyRequest().authenticated()
                 .and()
                     .formLogin(form -> form
                         .loginPage("/login").defaultSuccessUrl("/usuario/home", true)
