@@ -2,7 +2,7 @@
 <head th:replace="~{base :: head}"></head>
     <body>
         <div class="container">
-            <h1 class="text-center mb-4 mt-2">PETS DISPONIVEIS</h1>
+            <h1 class="orange-letter text-center mb-4 mt-2">PETS DISPONIVEIS</h1>
             <div class="card mb-3" th:each="pet : ${petsdisponiveis}">
                 <div class="card-body">
                     <a th:href="@{/adotante/adocao/{id} (id=${pet.id_pet})}">
