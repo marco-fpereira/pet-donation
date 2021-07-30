@@ -1,10 +1,56 @@
-<!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+<head th:replace="~{base :: head}"></head>
+    <body>
+        <div class="container">
+            <h1 class="orange-letter text-center mb-4 mt-2">ACEITE ADOÇÃO</h1>
+            <div class="card col-12 mt-3 mb-3">
+                <!--Ao inves de usar th:object="${adotante}" e th:object="${pet}", usar
+                th:value="${adotante.valor}" e th:value="${pet.valor}"-->
+                <div class="card-body col-sm-6 mb-5">     <!--ADOTANTE-->
+                         <!--DADOS DO ADOTANTE EM SI-->
+                    <h2><strong>Informações do interessado</strong></h2>
+                    <div class="row mb-3"><h4 class="orange-letter">Nome do adotante: <span th:text="${adotante.nome}"></span></h4></div>
+                    <div class="mt-1 mb-1"><h5 class="orange-letter">Telefone: <span th:text="${adotante.telefone}"></span></h5></div>
 
-</body>
+                    <div class="row mb-3">     <!--DADOS DO ENDERECO DO ADOTANTE-->
+                        <h5 class="orange-letter"> Localização:
+                            <span th:text="${adotante.endereco.bairro}"></span> -
+                            <span th:text="${adotante.endereco.cidade}"></span> -
+                            <span th:text="${adotante.endereco.estado}"></span>.
+                        </h5>
+                    </div>
+                </div>
+                <h2><strong>Informações do Pet</strong></h2>
+                <div class="card-body col-sm-6 mb-3">     <!--PET-->
+                    <div class="row col-sm-8">     <!--DADOS DO PET EM SI-->
+                        <h3 class="orange-letter mb-4">Nome: <span th:text="${pet.nomePet}"></span></h3>
+                        <div class="row">
+                            <div th:if="${pet.idadeAnos != 0}"><span th:text="${pet.idadeAnos}"></span> anos</div>
+                            <div th:unless="${pet.idadeAnos != 0}"><span th:text="${pet.idadeMeses}"></span> meses</div>
+                        </div>
+                        <div class="row mt-3 mb-2">
+                            <h4>Descrição:</h4>
+                            <h5 th:text="${pet.descricao}"></h5>
+                        </div>
+                    </div>
+                    <div class="col-sm-4 mb-5">
+                        <th:block th:switch="${pet.urlImagem}">
+                            <img th:case="null" class="img-thumbnail" th:src="${pet.urlImagem}" src=""/>
+                            <img th:case="*" class="img-thumbnail" src="https://mir-s3-cdn-cf.behance.net/project_modules/max_1200/65761296352685.5eac4787a4720.jpg"/>
+                        </th:block>
+                    </div>
+                </div>
+            </div>
+            <div class="row mb-3 mr-4">
+                <a th:href="@{/responsavel/aceito(id_pet=${pet.id_pet},id_adotante=${adotante.id_usuario})}">
+                <!--<a class="col-sm-2" th:href="@{/responsavel/aceito/{id} (id=${pet.id_pet})}">-->
+                    <button class="btn btn-success" type="button">Aceitar</button>
+                </a>
+                <a th:href="@{/responsavel/aceito(id_pet=${pet.id_pet},id_adotante=${adotante.id_usuario})}">
+                <!--<a class="col-sm-2" th:href="@{/responsavel/rejeitado/{id} (id=${pet.id_pet})}">-->
+                    <button class="btn btn-danger" type="button">Rejeitar</button>
+                </a>
+            </div>
+        </div>
+    </body>
 </html>

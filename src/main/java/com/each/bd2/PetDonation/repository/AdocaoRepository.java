@@ -23,4 +23,14 @@ public class AdocaoRepository {
                 .setParameter(5, adocao.getPet().getId_pet())
                 .executeUpdate();
     }
+
+    public void updateStatusByIdPet(Long pet_id, Long adotante_id, String status) {
+        entityManager.createNativeQuery(
+    "UPDATE tb_adocao SET status = ? " +
+            "WHERE tb_adocao.id_pet =  ? AND tb_adocao.ad_id_usuario = ?")
+            .setParameter(1, status)
+            .setParameter(2, pet_id)
+            .setParameter(3, adotante_id)
+            .executeUpdate();
+    }
 }

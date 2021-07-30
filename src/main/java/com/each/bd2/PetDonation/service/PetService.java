@@ -30,8 +30,8 @@ public class PetService {
     }
 
     @Transactional
-    public void updateStatusEmAdocao(Long pet_id) {
-        petRepository.updateStatus(pet_id, StatusPet.EM_DOACAO.toString());
+    public void updateStatus(Long pet_id, String status) {
+        petRepository.updateStatus(pet_id, status);
     }
 
     public Responsavel findResponsavel(Long id_pet) {

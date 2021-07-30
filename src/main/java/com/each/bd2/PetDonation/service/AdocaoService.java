@@ -28,4 +28,9 @@ public class AdocaoService {
     public Adocao findByIdPet(Long id){
         return null;
     }
+
+    @Transactional
+    public void updateStatusByIdPet(Long pet_id, Long adotante_id, String status) {
+        adocaoRepository.updateStatusByIdPet(pet_id, adotante_id, status);
+    }
 }

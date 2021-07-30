@@ -55,7 +55,7 @@ public class AdotanteController {
                 petService.findResponsavel(Long.parseLong(pet_id)),
                 petService.findById(Long.parseLong(pet_id)));
         adocaoService.save(adocao);
-        petService.updateStatusEmAdocao(Long.parseLong(pet_id));
+        petService.updateStatus(Long.parseLong(pet_id), StatusPet.EM_DOACAO.toString());
         return "redirect:/usuario/home";
     }
 }

@@ -20,4 +20,7 @@ public class AdotanteService {
         return adotanteRepository.findById(id);
     }
 
+    public Adotante findByIdPet(Long pet_id) {
+        return adotanteRepository.findByIdPet(pet_id);
+    }
 }
